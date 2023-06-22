@@ -10,6 +10,7 @@
     <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
    </head>
   <body>
+
         <div class="navbar" id="navbar">
             <div class="link_container">
               {% if user.is_authenticated %}
@@ -22,6 +23,7 @@
                 <a class="nav-item nav-link" id="test" href="/test">Show files</a>
             </div>
         </div>
+      
     {% with messages = get_flashed_messages() %}
       {% if messages %}
           {% for message in messages %}

@@ -5,18 +5,22 @@ LOGIN page
 {%endblock%}
 
 {%block content%}
+<div class="wrapper">
 <form method="post">
-    <h3 align ="center">Log in</h3>    
+    <h3 align ="center" style="font-size: 3em;">Log in</h3>    
     <div class="form-container">
-        <label for="email">Enter email</label>
+        <label for="email" style="font-size: 1.5em;">Enter email</label>
+        <br>
         <input type="email" 
         class="input" 
         id="email" 
         name = "email" 
-        placeholder="abc@gmail.com"/>
+        placeholder="abc@gmail.com"
+        style="font-size: 1em;"/>
     </div>
     <div class="form-container">
-        <label for="password">Password</label>
+        <label for="password" style="font-size: 1.5em;">Password</label>
+        <br>
         <input type="password" 
         class="input" 
         id="password" 
@@ -25,5 +29,6 @@ LOGIN page
     </div>    
     <button type="submit" class="submit_btn">Login</button>
     </form>
+</div>
 
 {%endblock%}
