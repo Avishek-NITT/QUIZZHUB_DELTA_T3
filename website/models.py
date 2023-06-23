@@ -38,7 +38,7 @@ class Quiz(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     quiz_title = db.Column(db.String)
     quiz_description = db.Column(db.String)
-    user = db.relationship("User", backref="quizzes")
+    user = db.relationship("User")
 
 class Question(db.Model):
     __tablename__ = 'questions'
@@ -46,7 +46,7 @@ class Question(db.Model):
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.quiz_id'))
     question_text = db.Column(db.String)
     question_type = db.Column(db.String)
-    quiz = db.relationship("Quiz", backref="questions")
+    quiz = db.relationship("Quiz")
 
 class Option(db.Model):
     __tablename__ = 'options'
@@ -54,4 +54,4 @@ class Option(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey('questions.question_id'))
     option_text = db.Column(db.String)
     is_correct = db.Column(db.Boolean)
-    question = db.relationship("Question", backref="options")
+    question = db.relationship("Question")

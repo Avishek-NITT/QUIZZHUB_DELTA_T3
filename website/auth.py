@@ -64,10 +64,10 @@ def sign_up():
 # Debugging purpose
 @auth.route('/test')
 def test():
-    query1 = User.query.count()
+    query1 = User.query.all()
     query2 = Quiz.query.all()
-    query3 = Question.query.count()
-    query4 = Option.query.count()
+    query3 = Question.query.all()
+    query4 = Option.query.all() 
     return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, user = current_user)
 
 @auth.route('/delete')
