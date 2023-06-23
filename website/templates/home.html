@@ -12,11 +12,17 @@ HOME
 <h1 align = "center">This is the home page</h1>
 
 <div class="wrapper">
-    <form method="post">
-            
-        
+    <form method="POST">
+        <label for="text"> Search user</label>
+        <input type="search" id="search_usr" name="search_usr"/> 
     </form>
+    <br>
     </div>
-
+    <a class="search_results"  href="profile/{{usr_search_results}}">{{usr_search_results}}</a>
+<!-- {%if usr_search_results%}
+    {%for x in user_search_results%}
+        <h1> </h1>
+    {%endfor%}
+{%endif%} -->
 
 {%endblock%}

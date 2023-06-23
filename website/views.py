@@ -8,6 +8,10 @@ views = Blueprint('views', __name__)
 @views.route('/' , methods = ['GET' , 'POST'])
 @login_required
 def home(): 
+    if request.method == 'POST':
+        usr_search = request.form.get('search_usr')
+        usr_query =  User.query.filter(User.first_name.like(usr_search)).all()
+        return render_template("home.html", user = current_user, usr_search_results = usr_search)
     return render_template("home.html", user = current_user)
 
 
@@ -48,11 +52,12 @@ def quizmaker():
     return render_template("quizmaker.html", user = current_user)
 
 
-@views.route('/profile')
+@views.route('/profile/<profile>')
 @login_required
-def show_profile():
-    query = Quiz.query.filter(Quiz.user_id == current_user.id).all()
-    return render_template('profile.html', user = current_user, quizes = query)
+def show_profile(profile):
+    user_query = User.query.filter(User.first_name == profile).first()
+    quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
+    return render_template('profile.html', user = user_query, quizes = quiz_query)
 
 
 @views.route('/quiz_taker/<quizz_id>')
