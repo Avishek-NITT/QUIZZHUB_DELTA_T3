@@ -55,13 +55,10 @@ def show_profile():
     return render_template('profile.html', user = current_user, quizes = query)
 
 
-@views.route('/quiz_taker/<quiz_id>')
+@views.route('/quiz_taker/<quizz_id>')
 @login_required
-def take_quiz(quiz_id):
-    quiz_query = Quiz.query.filter(Quiz.quiz_id == quiz_id).all()
-    question_query = Question.query.filter(Question.quiz_id == quiz_id).all()
-    return f"<h1> {question_query}</h1>"
-    for x in question_query:
-        return "<h1> Here </h1>"
-        option_query = Option.query.filter(Option.question_id == x.question_id).all()
-    return render_template("quiz_taker.html", quiz = quiz_query, question = question_query, option= option_query)
+def take_quiz(quizz_id):
+    quiz_query = Quiz.query.filter(Quiz.quiz_id == quizz_id).all()
+    question_query = Question.query.filter(Question.quiz_id == quizz_id).all()
+
+    return render_template("quiz_taker.html",user = current_user, query1= quiz_query, query2 = question_query)
