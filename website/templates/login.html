@@ -4,6 +4,10 @@
 LOGIN page
 {%endblock%}
 
+{%block head%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/login_style.css') }}">
+{%endblock%}
+
 {%block content%}
 <div class="wrapper">
 <form method="post">

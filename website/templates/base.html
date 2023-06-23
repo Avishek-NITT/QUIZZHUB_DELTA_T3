@@ -7,8 +7,10 @@
     <title>{% block title%}
         {%endblock%}
     </title>
-    <link rel="stylesheet" href= "{{ url_for('static',filename='styles/style.css') }}">
-   </head>
+    {%block head%}
+   
+    {%endblock%}
+  </head>
   <body>
 
         <div class="navbar" id="navbar">
