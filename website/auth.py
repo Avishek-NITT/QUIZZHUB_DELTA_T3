@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template, request , redirect,  url_for, flash
-from .models import User
+from .models import User,Quiz
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -51,7 +51,7 @@ def sign_up():
         elif len(password1) < 7:
             flash("Password length must be at least 7 characters", category='error')
         else:
-            new_user =User(email = email, first_name = first_name , password = generate_password_hash(password1, method='sha256'))
+            new_user =User(email = email, first_name = first_name , password = generate_password_hash(password1, method='scrypt'))
             db.session.add(new_user)
             db.session.commit()
             flash("Account created" , category='success')    
@@ -61,9 +61,16 @@ def sign_up():
 
 
 
-
+# Debugging purpose
 @auth.route('/test')
 def test():
-    query = User.query.count()
+    query = Quiz.query.count()
     
     return render_template('test.html', messages = query , user = current_user)
+
+@auth.route('/delete')
+def delete():
+    # query = Quiz_collection.query.delete()
+    # db.session.commit()
+
+    return redirect(url_for('views.home'))

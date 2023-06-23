@@ -11,4 +11,24 @@ HOME
 
 <h1>This is the home page</h1>
 
+<form method="post">
+    <div class="container"></div>
+    <span style="font-size: 2em;"> QUIZ MAKER</span>
+    <br>
+    <label> Add quiz name   </label> 
+    <input type="text" id="quiz_name" name="question"/>
+    <br>
+    <label> Question 1 </label>
+    <input type="text" id="question1" name="question1"/>
+    <br>
+</div>
+<button class="add_ques" onclick="add_ques()">+</button>
+<button type="submit">Submit</button>
+</form>
+
+
+    
+
+<script src="{{url_for('static', filename='quiz_maker.js')}}"></script>
+
 {%endblock%}
