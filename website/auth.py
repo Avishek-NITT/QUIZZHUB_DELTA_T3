@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template, request , redirect,  url_for, flash
-from .models import User,Quiz
+from .models import User,Quiz, Question, Option
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
@@ -64,13 +64,19 @@ def sign_up():
 # Debugging purpose
 @auth.route('/test')
 def test():
-    query = Quiz.query.count()
-    
-    return render_template('test.html', messages = query , user = current_user)
+    query1 = User.query.count()
+    query2 = Quiz.query.all()
+    query3 = Question.query.count()
+    query4 = Option.query.count()
+    return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, user = current_user)
 
 @auth.route('/delete')
 def delete():
-    # query = Quiz_collection.query.delete()
-    # db.session.commit()
+    query= Quiz.query.delete()
+    db.session.commit()
+    query= Question.query.delete()
+    db.session.commit()
+    query= Option.query.delete()
+    db.session.commit()
 
     return redirect(url_for('views.home'))

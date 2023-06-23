@@ -10,5 +10,15 @@ Test
 {%block content%}
 
 <h1>This is the test page</h1>
-{{messages}}
+<!-- {{message1}}
+{{message2}}
+{{message3}}
+{{message4}} -->
+
+{% for x in message2 %}
+    {{x.quiz_id}}
+    {{x.user_id}}
+    {{x.quiz_title}}
+    {{x.quiz_description}}
+{%endfor%}
 {%endblock%}
