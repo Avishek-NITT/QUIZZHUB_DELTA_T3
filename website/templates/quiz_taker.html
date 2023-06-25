@@ -1,0 +1,33 @@
+{%extends "base.html"%}
+
+{%block title%}
+Quiz
+
+{%endblock%}
+
+
+{%block content%}
+
+<!-- <h1>This is the quiz taker page</h1>
+{%for x in quiz%}
+    <h1> {{x.quiz_title}}</h1>
+    <br>
+    <h3> {{x.quiz_description}}</h3>
+{%endfor%} -->
+
+<form method="post">
+
+
+
+<h1>{{query1.quiz_title}}</h1>
+<h3> {{query1.quiz_description}} </h3>
+<br>
+<ol>
+{%for x in query2%}
+    <li> {{x.question_text}} ?</li>
+{%endfor%}
+</ol>
+
+
+</form>
+{%endblock%}
