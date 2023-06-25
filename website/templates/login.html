@@ -11,28 +11,34 @@ LOGIN page
 {%block content%}
 <div class="wrapper">
 <form method="post">
-    <h3 align ="center" style="font-size: 3em;">Log in</h3>    
+    
     <div class="form-container">
-        <label for="email" style="font-size: 1.5em;">Enter email</label>
-        <br>
-        <input type="email" 
-        class="input" 
-        id="email" 
-        name = "email" 
-        placeholder="abc@gmail.com"
-        style="font-size: 1em;"/>
+        <h3 align ="center" style="font-size: 3em; margin-top: 2vh; ">LOG IN</h3> 
+        <div class="element-container">
+            <div class="email-container">
+                <label for="email" style="font-size: 2em;">Enter email</label>
+                <br>
+                <input type="email" 
+                class="input" 
+                id="email" 
+                name = "email" 
+                placeholder="abc@gmail.com"
+                style="font-size: 1em;"/>
+            </div>
+            <div class="password-container">
+                <label for="password" style="font-size: 2em;">Password</label>
+                <br>
+                <input type="password" 
+                class="input" 
+                id="password" 
+                name = "password" 
+                placeholder="Enter password"/>
+            </div>   
+        </div>
+        <button type="submit" id="submit_btn">Login</button> 
     </div>
-    <div class="form-container">
-        <label for="password" style="font-size: 1.5em;">Password</label>
-        <br>
-        <input type="password" 
-        class="input" 
-        id="password" 
-        name = "password" 
-        placeholder="Enter password"/>
-    </div>    
-    <button type="submit" class="submit_btn">Login</button>
-    </form>
+    
+</form>
 </div>
 
 {%endblock%}

@@ -54,29 +54,11 @@ def sign_up():
             new_user =User(email = email, first_name = first_name , password = generate_password_hash(password1, method='scrypt'))
             db.session.add(new_user)
             db.session.commit()
-            flash("Account created" , category='success')    
-            login_user(user, remember= True)        
+            flash("Account created" , category='success')  
+            if(user):
+                login_user(user, remember= True)        
             return redirect(url_for('views.home'))
     return render_template("sign_up.html", user = current_user)
 
 
 
-# Debugging purpose
-@auth.route('/test')
-def test():
-    query1 = User.query.all()
-    query2 = Quiz.query.all()
-    query3 = Question.query.all()
-    query4 = Option.query.all() 
-    return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, user = current_user)
-
-@auth.route('/delete')
-def delete():
-    query= Quiz.query.delete()
-    db.session.commit()
-    query= Question.query.delete()
-    db.session.commit()
-    query= Option.query.delete()
-    db.session.commit()
-
-    return redirect(url_for('views.home'))
