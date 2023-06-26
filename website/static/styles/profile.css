@@ -27,9 +27,19 @@ ul {
     font-size: 2em;
     align-self: center;
 }
+.profile_quizes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.links{
+    padding: 2%;
+}
 
 .quiz_container{
     border: solid rgb(0, 255, 0);
+    border-radius: 2%;
     width: 20vw;
     display: flex;
     flex-direction: column;

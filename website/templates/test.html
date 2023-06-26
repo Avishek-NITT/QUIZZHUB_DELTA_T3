@@ -15,12 +15,12 @@ Test
 {{message3}}
 {{message4}} -->
 
-{% for x in message1 %}
+<!-- {% for x in message1 %}
     {{x.id}}
     {{x.first_name}}
     {{x.email}}
     {{x.password}}
-{%endfor%}
+{%endfor%} -->
 <br>
 
 {% for x in message2 %}
@@ -28,14 +28,18 @@ Test
     {{x.user_id}}
     {{x.quiz_title}}
     {{x.quiz_description}}
+    <br>
 {%endfor%}
+<br>
 <br>
 
 {% for x in message3 %}
     {{x.question_id}}
     {{x.quiz_id}}
     {{x.question_text}}
+    <br>
 {%endfor%}
+<br>
 <br>
 {% for x in message4 %}
     {{x.option_id}}

@@ -35,18 +35,19 @@ def quizmaker():
         db.session.commit()
         
         question_id = new_question.question_id
-        new_option1 = Option( question_id = question_id,option_text = request.form.get('c1'), is_correct = True)
-        new_option2 = Option(question_id = question_id, option_text = request.form.get('c2'),is_correct = False)
-        new_option3 = Option( question_id = question_id,option_text = request.form.get('c3'), is_correct = False)
-        new_option4 = Option( question_id = question_id,option_text = request.form.get('c4'), is_correct = False)
+        new_option = []
+        new_option.append(Option( question_id = question_id,option_text = request.form.get('c1'), is_correct = True))
+        new_option.append(ption(question_id = question_id, option_text = request.form.get('c2'),is_correct = False))
+        new_option.append(Option( question_id = question_id,option_text = request.form.get('c3'), is_correct = False))
+        new_option.append(Option( question_id = question_id,option_text = request.form.get('c4'), is_correct = False))
 
 
 
         db.session.add(new_question)
-        db.session.add(new_option1)
-        db.session.add(new_option2)
-        db.session.add(new_option3)
-        db.session.add(new_option4)
+        db.session.add(new_option[0])
+        db.session.add(new_option[1])
+        db.session.add(new_option[2])
+        db.session.add(new_option[3])
         db.session.commit()
 
     return render_template("quizmaker.html", user = current_user)

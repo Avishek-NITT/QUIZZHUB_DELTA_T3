@@ -26,10 +26,11 @@
 <div class="quiz_container">
     <span class="container_title">QUIZES</span>
     <br>
-    {%for x in quizes%}
-            <a class="links" href="/quiz_taker/{{x.quiz_id}}">{{x.quiz_title}}</a>
-    {%endfor%}
-
+    <div class="profile_quizes">
+        {%for x in quizes%}
+                <a class="links" href="/quiz_taker/{{x.quiz_id}}">{{x.quiz_title}}</a>
+        {%endfor%}
+    </div>
 
 </div>
 

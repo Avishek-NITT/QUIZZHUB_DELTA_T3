@@ -4,27 +4,6 @@ from flask_login import UserMixin
 
 
 
-# class User(db.Model, UserMixin):
-#     id = db.Column(db.Integer , primary_key = True)
-#     email = db.Column(db.String(150) , unique = True)
-#     password = db.Column(db.String(150))
-#     first_name = db.Column(db.String(150))
-#     quiz = db.relationship('Quiz_collection')
-
-
-# class Quiz_collection (db.Model):
-#     quiz_Id = db.Column(db.Integer, primary_key = True)
-#     quiz_userId = db.Column(db.Integer, db.ForeignKey('user.id'))
-#     quiz_name = db.Column(db.String(50))
-#     quiz = db.relationship('Quiz_Questions')
-    
-
-# class Quiz_Questions(db.Model):
-#     quiz_Id = db.Column(db.Integer, db.ForeignKey('quiz_collection.quiz_Id'))
-#     quiz_question = db.Column(db.String(150))
-
-
-
 class User(db.Model,UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
