@@ -9,13 +9,11 @@ LOGIN page
 {%endblock%}
 
 {%block content%}
-<div class="wrapper">
 <form method="post">
-    
     <div class="form-container">
-        <h3 align ="center" style="font-size: 3em; margin-top: 2vh; ">LOG IN</h3> 
-        <div class="element-container">
-            <div class="email-container">
+        <h1 align ="center" >LOG IN</h3> 
+
+            <div class="element-container">
                 <label for="email" style="font-size: 2em;">Enter email</label>
                 <br>
                 <input type="email" 
@@ -25,7 +23,7 @@ LOGIN page
                 placeholder="abc@gmail.com"
                 style="font-size: 1em;"/>
             </div>
-            <div class="password-container">
+            <div class="element-container">
                 <label for="password" style="font-size: 2em;">Password</label>
                 <br>
                 <input type="password" 
@@ -34,11 +32,10 @@ LOGIN page
                 name = "password" 
                 placeholder="Enter password"/>
             </div>   
+            <button type="submit" id="submit_btn">Login</button> 
         </div>
-        <button type="submit" id="submit_btn">Login</button> 
-    </div>
     
 </form>
-</div>
+
 
 {%endblock%}
