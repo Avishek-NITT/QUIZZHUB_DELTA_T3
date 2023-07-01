@@ -1,12 +1,14 @@
-let count = 1
-const cont = document.querySelector(".container")
-htmlmarkup = ""
-function add_ques(){
-    count ++;
-    htmlmarkup = `<label> Question ${count} </label>
-    <input type="text" id="question${count}" name="question"/><br>`
-    cont.innerHTML += htmlmarkup
-}
+let ques_count = 1
+
+
+const form_ele = document.querySelector(".form")
+
+form_ele.addEventListener('submit', event =>{
+    event.preventDefault();
+
+    const formData = new FormData(form_ele)
+    console.log(formData)
+})
 
 
 

@@ -13,7 +13,7 @@ Quiz Maker
 
 {%block content%}
 
-<form method="post">
+<form method="post" class="form">
     <div class="container"></div>
     <h1 align = "center"> QUIZ MAKER</h1>
     <br>
@@ -22,29 +22,30 @@ Quiz Maker
     <br>
     <label class="text1"> Add description </label>
     <input type="text" class="text1"  id="quiz_desc" name="quiz_desc"/>
-    <br>
-    <br>
-    <br>
-    <h3> Question 1 </h3>
-    <input type="text" class="text2" id="question1" name="question1"/>
-    <br>
-    <label class="text2"> Enter Correct option </label> 
-    <br>
-    <input class="text2" type="text" id="c1" name="c1"/>
-    <br>
-    <label class="text2"> Enter other options </label><br>
-     <input class="text2" type="text" id="c2" name="c2"/>
-     <br>
-     <br>
-     <input class="text2" type="text" id="c3" name="c3"/>
-     <br>
-     <br>
-     <input class="text2" type="text" id="c4" name="c4"/>
-     
+    <div class="ques_container">
+        <div class="question" id="question1">
+            <h3> Question 1 </h3>
+            <input type="text" class="text2" id="question1" name="question1"/>
+            <br>
+            <label class="text2"> Enter Correct option </label> 
+            <br>
+            <input class="text2" type="text" id="c1" name="c1"/>
+            <br>
+            <label class="text2"> Enter other options </label><br>
+            <input class="text2" type="text" id="c2" name="c2"/>
+            <br>
+            <br>
+            <input class="text2" type="text" id="c3" name="c3"/>
+            <br>
+            <br>
+            <input class="text2" type="text" id="c4" name="c4"/>
+        </div>
+    </div>
+    
 </div>
 <br>
-<button class="add_ques" onclick="add_ques()">+</button>
-<button type="submit">Submit</button>
+
+<button type="submit" class="submit_btn">Submit</button>
 </form>
 
 <script src="{{url_for('static', filename='quiz_maker.js')}}"></script>

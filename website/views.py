@@ -37,7 +37,7 @@ def quizmaker():
         question_id = new_question.question_id
         new_option = []
         new_option.append(Option( question_id = question_id,option_text = request.form.get('c1'), is_correct = True))
-        new_option.append(ption(question_id = question_id, option_text = request.form.get('c2'),is_correct = False))
+        new_option.append(Option(question_id = question_id, option_text = request.form.get('c2'),is_correct = False))
         new_option.append(Option( question_id = question_id,option_text = request.form.get('c3'), is_correct = False))
         new_option.append(Option( question_id = question_id,option_text = request.form.get('c4'), is_correct = False))
 
@@ -49,6 +49,12 @@ def quizmaker():
         db.session.add(new_option[2])
         db.session.add(new_option[3])
         db.session.commit()
+
+
+
+
+        data = request.get_json()
+        
 
     return render_template("quizmaker.html", user = current_user)
 
