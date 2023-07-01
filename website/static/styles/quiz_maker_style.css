@@ -38,3 +38,16 @@
     flex-direction: row;
 
 }
+
+#add_que_btn{
+    height: fit-content;
+    width: fit-content;
+    padding: 1%;
+    background-color: black;
+    border: solid rgb(0, 255, 0);
+    align-content: center;
+    font-size: 3em;
+    align-self: center;
+    cursor: pointer;
+
+}
