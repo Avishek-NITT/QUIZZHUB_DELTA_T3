@@ -4,6 +4,7 @@ from . import db
 from .models import User, Quiz, Question, Option
 
 views = Blueprint('views', __name__)
+auth = Blueprint('auth', __name__)
 
 @views.route('/' , methods = ['GET' , 'POST'])
 @login_required
@@ -20,41 +21,33 @@ def home():
 @login_required
 def quizmaker():
     if request.method == 'POST':
-        quiz_name = request.form.get('quiz_name')
-        quiz_desc= request.form.get('quiz_desc')
-        question = request.form.get('question1')
-
-
+        data = request.get_json()
+        quiz_name = data.get('quiz_name')
+        quiz_desc = data.get('quiz_desc')
         new_quiz = Quiz(user_id = current_user.id, quiz_title = quiz_name, quiz_description = quiz_desc)
         db.session.add(new_quiz)
         db.session.commit()
-        
-        quiz_id = new_quiz.quiz_id
-        new_question = Question(quiz_id = quiz_id,question_text = question)
-        db.session.add(new_question)
-        db.session.commit()
-        
-        question_id = new_question.question_id
-        new_option = []
-        new_option.append(Option( question_id = question_id,option_text = request.form.get('c1'), is_correct = True))
-        new_option.append(Option(question_id = question_id, option_text = request.form.get('c2'),is_correct = False))
-        new_option.append(Option( question_id = question_id,option_text = request.form.get('c3'), is_correct = False))
-        new_option.append(Option( question_id = question_id,option_text = request.form.get('c4'), is_correct = False))
 
+        for x in range (1, 10):
+            question = data.get(f'question{x}')
+            if question == None:
+                break
+            quiz_id = new_quiz.quiz_id
+            new_question = Question(quiz_id = quiz_id,question_text = question)
+            db.session.add(new_question)
+            db.session.commit()
 
-
-        db.session.add(new_question)
-        db.session.add(new_option[0])
-        db.session.add(new_option[1])
-        db.session.add(new_option[2])
-        db.session.add(new_option[3])
-        db.session.commit()
-
-
-
-
-        data = request.get_json()
-        
+            question_id = new_question.question_id
+            new_option = []
+            new_option.append(Option( question_id = question_id,option_text = data.get(f'q{x}_c1'), is_correct = True))
+            new_option.append(Option(question_id = question_id, option_text = data.get(f'q{x}_c2'),is_correct = False))
+            new_option.append(Option( question_id = question_id,option_text = data.get(f'q{x}_c3'), is_correct = False))
+            new_option.append(Option( question_id = question_id,option_text = data.get(f'q{x}_c4'), is_correct = False))
+            db.session.add(new_option[0])
+            db.session.add(new_option[1])
+            db.session.add(new_option[2])
+            db.session.add(new_option[3])
+            db.session.commit()
 
     return render_template("quizmaker.html", user = current_user)
 
