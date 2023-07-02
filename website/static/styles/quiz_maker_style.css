@@ -51,3 +51,10 @@
     cursor: pointer;
 
 }
+
+.text{
+    background-color: rgb(71, 71, 71);
+    border: solid rgb(0, 0, 0);
+    border-radius: 2%;
+    border-width: 2px;
+}
