@@ -5,9 +5,19 @@ let ques_count = 1
 let htmlmarkup = ""
 
 form_ele.addEventListener('submit', event =>{
+
+
+
     event.preventDefault();
     const formData = new FormData(form_ele)
     const data = Object.fromEntries(formData)
+
+
+    if(check_quiz(data)){
+    }else{
+        return
+    }
+   
 
 
     fetch('http://127.0.0.1:5000/quizmaker', {
@@ -51,6 +61,32 @@ function add_ques(){
         <button id="add_que_btn" onclick="add_ques()">+</button>
     `
     ques_container_query.innerHTML += htmlmarkup
+}
+
+
+
+function check_quiz(data){
+    if (!data.quiz_name){
+        alert("Quiz must have a name")
+        return 0
+    }
+    if(!data.quiz_desc){
+        alert("Quiz must have a description")
+        return 0
+    }
+    let ques_counter = 1
+    for (; ques_counter <6 ; ques_counter++){
+        if(`!data.question${ques_counter}`){
+            alert(`Question ${ques_counter} is not provided`)
+            return 0
+        }
+        for(let i = 1; i < 5 ; i++){
+            if(`!data.q${ques_counter}_c${i}`){
+                alert("Fill in all the options")
+                return 0 
+            }
+        }
+    }
 }
 
 
