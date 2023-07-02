@@ -4,34 +4,32 @@
 Quiz
 
 {%endblock%}
-
+{%block head%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/quiz_taker.css') }}">
+{%endblock%}
 
 {%block content%}
-
-
-<form method="post">
-
-
-
-<h1 align = "center">{{query1.quiz_title}}</h1>
-<h3> {{query1.quiz_description}} </h3>
+<h1 align = "center">{{quiz_query.quiz_title}}</h1>
+<h3> {{quiz_query.quiz_description}} </h3>
 
 
 <form method="post">
 <div class="question_box">
-    {%for x in query2%}
-        {{x.question_text}}
+    {%for x in question_query%}
+        {{x.question_text}}?
     {%endfor%}
+<br>
 
-
-
+{%for x in option_query%}
+    {%for i in range(0,4)%}
+        <input type="radio" name="option"/>
+        <label>{{x[i].option_text}}</label>
+    {%endfor%}
+{%endfor%}
 </div>
-
-
 </form>
 
 
-</form>
 {%endblock%}
 
 

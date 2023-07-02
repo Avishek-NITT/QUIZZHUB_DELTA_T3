@@ -1,4 +1,8 @@
 .question_box{
     border: solid rgb(0, 255, 0);
-    
+    border-radius: 3%;
+    height: max-content;
+    width: max-content;
+    margin: 1%;
+    padding: 1%;
 }

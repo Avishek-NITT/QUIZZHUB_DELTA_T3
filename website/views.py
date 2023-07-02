@@ -71,8 +71,12 @@ def show_user_profile():
 def take_quiz(quizz_id):
     quiz_query = Quiz.query.filter(Quiz.quiz_id == quizz_id).first()
     question_query = Question.query.filter(Question.quiz_id == quizz_id).all()
+    option_query = []
+    for x in question_query:
+        option  = Option.query.filter(Option.question_id == x.question_id).all()
+        option_query.append(option)
 
-    return render_template("quiz_taker.html",user = current_user, query1= quiz_query, query2 = question_query)
+    return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query)
 
 
 
