@@ -2,6 +2,7 @@ from flask import Blueprint,render_template,request, flash, redirect,url_for
 from flask_login import login_required, current_user
 from . import db
 from .models import User, Quiz, Question, Option
+import random
 
 views = Blueprint('views', __name__)
 auth = Blueprint('auth', __name__)
@@ -74,8 +75,9 @@ def take_quiz(quizz_id):
     option_query = []
     for x in question_query:
         option  = Option.query.filter(Option.question_id == x.question_id).all()
+        random.shuffle(option)
         option_query.append(option)
-
+    
     return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query)
 
 

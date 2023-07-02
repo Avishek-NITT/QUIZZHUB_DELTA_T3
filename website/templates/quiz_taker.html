@@ -13,20 +13,31 @@ Quiz
 <h3> {{quiz_query.quiz_description}} </h3>
 
 
-<form method="post">
-<div class="question_box">
-    {%for x in question_query%}
-        {{x.question_text}}?
-    {%endfor%}
-<br>
+<form method="post" class="form">
 
-{%for x in option_query%}
-    {%for i in range(0,4)%}
-        <input type="radio" name="option"/>
-        <label>{{x[i].option_text}}</label>
-    {%endfor%}
-{%endfor%}
-</div>
+    
+
+
+
+    
+
+{% for i in range(question_query|length) %}
+    {% set question = question_query[i] %}
+    <div class="question_box">
+        <label class="question">
+        Q{{i+1}}.
+        {{ question.question_text }}?
+        </label>
+        <br>
+        {% for x in option_query[i] %}
+            <input type="radio" class="option" name="{{i+1}}" value="{{ x.option_text }}"/>
+            <label for="text"> {{ x.option_text }}</label>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+
+<button type="submit" class="sbmt_btn">SUBMIT</button>
 </form>
 
 

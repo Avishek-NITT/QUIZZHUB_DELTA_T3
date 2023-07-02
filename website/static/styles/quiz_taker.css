@@ -6,3 +6,13 @@
     margin: 1%;
     padding: 1%;
 }
+.sbmt_btn{
+    height: fit-content;
+    width: fit-content;
+    padding: 0.5%;
+    background-color: black;
+    border: solid rgb(0, 255, 0);
+    align-content: center;
+    align-self: center;
+    cursor: pointer;
+}
