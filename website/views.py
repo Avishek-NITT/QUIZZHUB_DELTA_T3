@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template,request, flash, redirect,url_for
 from flask_login import login_required, current_user
 from . import db
-from .models import User, Quiz, Question, Option
+from .models import User, Quiz, Question, Option, Score
 import random
 
 views = Blueprint('views', __name__)
@@ -67,7 +67,7 @@ def show_user_profile():
     quiz_query = Quiz.query.filter(Quiz.user_id == current_user.id).all()
     return render_template('profile.html', user = current_user, quizes = quiz_query)
 
-@views.route('/quiz_taker/<quizz_id>')
+@views.route('/quiz_taker/<quizz_id>', methods = ['GET' , 'POST'])
 @login_required
 def take_quiz(quizz_id):
     quiz_query = Quiz.query.filter(Quiz.quiz_id == quizz_id).first()
@@ -77,7 +77,24 @@ def take_quiz(quizz_id):
         option  = Option.query.filter(Option.question_id == x.question_id).all()
         random.shuffle(option)
         option_query.append(option)
-    
+    if request.method == 'POST':
+        data = request.get_json()
+        score = 0
+        question_id  = Question.query.filter(Question.quiz_id == quizz_id).all()
+        
+        for x in range(1,len(question_id)):
+            chosen_option = data.get(f"{x}")
+            
+            option = Option.query.filter(Option.question_id == question_id[x-1].question_id, Option.option_text == chosen_option).first()
+            if(option.is_correct == True):
+                score = score + 1
+
+
+        new_score = Score(quiz_id = quizz_id, user_id = current_user.id, user_score = score)
+        db.session.add(new_score)
+        db.session.commit()
+        
+        
     return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query)
 
 
@@ -89,15 +106,18 @@ def test():
     query2 = Quiz.query.all()
     query3 = Question.query.all()
     query4 = Option.query.all() 
+    query5 = Score.query.all()
     return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, user = current_user)
 
 @views.route('/delete')
 def delete():
-    query= Quiz.query.delete()
-    db.session.commit()
-    query= Question.query.delete()
-    db.session.commit()
-    query= Option.query.delete()
+    # query= Quiz.query.delete()
+    # db.session.commit()
+    # query= Question.query.delete()
+    # db.session.commit()
+    # query= Option.query.delete()
+    # db.session.commit()
+    query = Score.query.delete()
     db.session.commit()
 
     return redirect(url_for('views.home'))

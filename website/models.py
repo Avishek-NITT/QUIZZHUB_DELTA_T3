@@ -34,3 +34,11 @@ class Option(db.Model):
     option_text = db.Column(db.String)
     is_correct = db.Column(db.Boolean)
     question = db.relationship("Question")
+
+
+class Score(db.Model):
+    __tablename__ = 'score'
+    id = db.Column(db.Integer, primary_key=True)
+    quiz_id = db.Column(db.Integer)
+    user_id = db.Column(db.Integer)
+    user_score = db.Column(db.Integer)
