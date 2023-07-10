@@ -59,7 +59,14 @@ def quizmaker():
 def show_profile(profile):
     user_query = User.query.filter(User.first_name == profile).first()
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
-    return render_template('profile.html', user = user_query, quizes = quiz_query)
+    quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
+    if quiz_taken_query1:
+        quiz_taken_query2 =[]
+        for x in quiz_taken_query1:
+            quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
+        return render_template('profile.html', user = user_query, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2)
+    else:
+        return render_template('profile.html', user = user_query, quizes = quiz_query)
 
 @views.route('/profile/my_profile')
 @login_required
