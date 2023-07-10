@@ -24,7 +24,6 @@ class Question(db.Model):
     question_id = db.Column(db.Integer, primary_key=True)
     quiz_id = db.Column(db.Integer, db.ForeignKey('quizzes.quiz_id'))
     question_text = db.Column(db.String)
-    question_type = db.Column(db.String)
     quiz = db.relationship("Quiz")
 
 class Option(db.Model):

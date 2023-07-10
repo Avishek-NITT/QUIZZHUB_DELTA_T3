@@ -65,7 +65,14 @@ def show_profile(profile):
 @login_required
 def show_user_profile():
     quiz_query = Quiz.query.filter(Quiz.user_id == current_user.id).all()
-    return render_template('profile.html', user = current_user, quizes = quiz_query)
+    quiz_taken_query1 = Score.query.filter(Score.user_id == current_user.id).all()
+    if quiz_taken_query1:
+        quiz_taken_query2 =[]
+        for x in quiz_taken_query1:
+            quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
+        return render_template('profile.html', user = current_user, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2)
+    else:
+        return render_template('profile.html', user = current_user, quizes = quiz_query)
 
 @views.route('/quiz_taker/<quizz_id>', methods = ['GET' , 'POST'])
 @login_required
@@ -82,7 +89,7 @@ def take_quiz(quizz_id):
         score = 0
         question_id  = Question.query.filter(Question.quiz_id == quizz_id).all()
         
-        for x in range(1,len(question_id)):
+        for x in range(1,len(question_id) + 1):
             chosen_option = data.get(f"{x}")
             
             option = Option.query.filter(Option.question_id == question_id[x-1].question_id, Option.option_text == chosen_option).first()
@@ -93,6 +100,7 @@ def take_quiz(quizz_id):
         new_score = Score(quiz_id = quizz_id, user_id = current_user.id, user_score = score)
         db.session.add(new_score)
         db.session.commit()
+        
         
         
     return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query)
@@ -107,7 +115,7 @@ def test():
     query3 = Question.query.all()
     query4 = Option.query.all() 
     query5 = Score.query.all()
-    return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, user = current_user)
+    return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, message5 = query5 , user = current_user)
 
 @views.route('/delete')
 def delete():

@@ -37,10 +37,33 @@ ul {
     padding: 2%;
 }
 
+/* .container{
+    display: flex;
+    flex-direction: row;
+} */
+
+
+
 .quiz_container{
     border: solid rgb(0, 255, 0);
     border-radius: 2%;
     width: 20vw;
     display: flex;
     flex-direction: column;
+}
+
+.quiz_taken{
+    width: 20vw;
+    padding: 1%;
+    margin: 1%;
+    border: solid rgb(0, 255, 0);
+}
+
+.text1{
+    margin-right: 20%;
+}
+
+.text2{
+    margin-left: 20%;
+
 }

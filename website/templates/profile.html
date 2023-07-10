@@ -16,13 +16,13 @@
 
 
 {%if user.first_name%}
-    <h1 align="center">This is the profile page of {{user.first_name}}</h1>
+    <h1 align="center" class="heading">This is the profile page of {{user.first_name}}</h1>
 {%else%}
- <h1>  This is the profile page of {{user}} </h1>   
+ <h1 class="heading">  This is the profile page of {{user}} </h1>   
 
  {%endif%}
-
-
+ <br>
+<div class="container">
 <div class="quiz_container">
     <span class="container_title">QUIZES</span>
     <br>
@@ -32,6 +32,18 @@
         {%endfor%}
     </div>
 
+</div>
+<div class="quiz_taken">
+    <h3 align= "center"> QUIZES TAKEN</h3>
+    <span class="text1"> Quiz Name</span>
+    <span class="text2"> Score </span>   
+    <br>
+    {% for i in range(quiz_taken1|length) %}
+    <span class="text1">{{quiz_taken2[i][0].quiz_title}}</span>
+    <span class="text2"> {{quiz_taken1[i].user_score}}</span>
+    <br>
+ {% endfor %}
+</div>
 </div>
 
 
