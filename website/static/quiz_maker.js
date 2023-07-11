@@ -23,7 +23,6 @@ form_ele.addEventListener('submit', event =>{
 })
 
 function add_ques(){
-    console.log("Hello")
     if(ques_count === 5){
         alert("Cannot add more than 5 questions")
         return 
@@ -31,9 +30,10 @@ function add_ques(){
     ques_count++
     const element = document.getElementById("add_que_btn")
     element.remove()
+    let ques_box = document.createElement("div")
     htmlmarkup = ""
     htmlmarkup += `
-    <div class="question" id="question${ques_count}">
+
             <h3> Question ${ques_count} </h3>
             <input type="text" class="text text2" id="question${ques_count}" name="question${ques_count}"/>
             <br>
@@ -48,11 +48,19 @@ function add_ques(){
             <input class="text text2" type="text" id="q${ques_count}_c3" name="q${ques_count}_c3"/>
             <br>
             <br>
-            <input class="text text2" type="text" id="q${ques_count}_c4" name="q${ques_count}_c4"/>
-        </div>
-        <button id="add_que_btn" onclick="add_ques()">+</button>
+            <input class="text text2" type="text" id="q${ques_count}_c4" name="q${ques_count}_c4"/> 
     `
-    ques_container_query.innerHTML += htmlmarkup
+    ques_box.innerHTML = htmlmarkup
+    ques_box.classList.add("question")
+    ques_box.setAttribute('id', `question${ques_count}`)
+    // ques_container_query.innerHTML += htmlmarkup
+    ques_container_query.appendChild(ques_box)
+    ques_box = document.createElement("button")
+    htmlmarkup = "+"
+    ques_box.innerHTML = htmlmarkup
+    ques_box.setAttribute('id', "add_que_btn")
+    ques_box.setAttribute('onclick', "add_ques();")
+    ques_container_query.appendChild(ques_box)
 }
 
 

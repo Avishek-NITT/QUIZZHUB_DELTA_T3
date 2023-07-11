@@ -14,13 +14,6 @@ Quiz
 
 
 <form method="post" class="form">
-
-    
-
-
-
-    
-
 {% for i in range(question_query|length) %}
     {% set question = question_query[i] %}
     <div class="question_box">
@@ -35,12 +28,8 @@ Quiz
         {% endfor %}
     </div>
 {% endfor %}
-
-
 <button type="submit" class="sbmt_btn">SUBMIT</button>
 </form>
-
-
 {%endblock%}
 
 
