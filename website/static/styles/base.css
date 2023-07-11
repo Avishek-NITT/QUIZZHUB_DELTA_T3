@@ -6,6 +6,9 @@
 
 body{
     background-color: rgb(0, 0, 0);
+    background-image: url("Pictures/base_background");
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 
