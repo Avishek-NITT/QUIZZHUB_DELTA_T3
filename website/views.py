@@ -68,18 +68,22 @@ def show_profile(profile):
     else:
         return render_template('profile.html', user = user_query, quizes = quiz_query)
 
-@views.route('/profile/my_profile')
+@views.route('/profile/my_profile', methods = ['GET' , 'POST'])
 @login_required
 def show_user_profile():
+    if request.method == 'POST':
+        
+
+
     quiz_query = Quiz.query.filter(Quiz.user_id == current_user.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == current_user.id).all()
     if quiz_taken_query1:
         quiz_taken_query2 =[]
         for x in quiz_taken_query1:
             quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
-        return render_template('profile.html', user = current_user, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2)
+        return render_template('user_profile.html', user = current_user, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2)
     else:
-        return render_template('profile.html', user = current_user, quizes = quiz_query)
+        return render_template('user_profile.html', user = current_user, quizes = quiz_query)
 
 @views.route('/quiz_taker/<quizz_id>', methods = ['GET' , 'POST'])
 @login_required
