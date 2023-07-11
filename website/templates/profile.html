@@ -15,20 +15,20 @@
 {%block content%}
 
 
-{%if user.first_name%}
-    <h1 align="center" class="heading">This is the profile page of {{user.first_name}}</h1>
-{%else%}
- <h1 class="heading">  This is the profile page of {{user}} </h1>   
-
- {%endif%}
- <br>
-
+ 
  <div class="upload-container">
     <input type="file" id="file-input" name="profile_pic">
     <label for="file" id="upload_btn"> CHOOSE FILE</label>
-  </div>
 
-<div class="container">
+    
+  </div>
+  
+  {%if user.first_name%}
+  <span id="user_name"> {{user.first_name}}</span>
+{%else%}
+<span id="user_name"> {{user}}</span>
+ {%endif%}
+
 <div class="quiz_container">
     <span class="container_title">QUIZES</span>
     <br>
@@ -50,7 +50,7 @@
     <br>
  {% endfor %}
 </div>
-</div>
+
 
 
 {%endblock%}
