@@ -70,6 +70,7 @@ ul {
   position: absolute;
   left: 3%;
   top: 15%;
+  overflow: hidden;
     width: 10vw;
     height: 20vh;
     border: 2px dashed rgb(0, 255, 0);
@@ -96,13 +97,17 @@ ul {
   }
 
   #file-input{
-    height: fit-content;
-    width: fit-content;
-    color: transparent;
+    height: 20vh;
+    opacity: 0;
+  }
+  #upload_plus_sign{
     position: absolute;
-    left: 1.5%;
+    pointer-events: none;
+    font-size: 4em;
+    color: rgb(0, 255, 0);
+
   }
 
   #upload_btn{
-    font-size: 1em;
+    opacity: 0;
   }

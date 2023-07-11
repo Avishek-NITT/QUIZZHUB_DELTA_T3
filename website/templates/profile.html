@@ -17,10 +17,12 @@
 
  
  <div class="upload-container">
-    <input type="file" id="file-input" name="profile_pic">
-    <label for="file" id="upload_btn"> CHOOSE FILE</label>
-
     
+    <button id="upload_btn">
+        <input type="file" id="file-input" name="profile_pic">
+    </button>
+    <span id="upload_plus_sign"> +</span>
+    <!-- <label for="file" id="upload_btn"> CHOOSE FILE</label> -->
   </div>
   
   {%if user.first_name%}
