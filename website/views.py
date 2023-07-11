@@ -87,13 +87,13 @@ def take_quiz(quizz_id):
     quiz_query = Quiz.query.filter(Quiz.quiz_id == quizz_id).first()
     question_query = Question.query.filter(Question.quiz_id == quizz_id).all()
     option_query = []
+    score = 0
     for x in question_query:
         option  = Option.query.filter(Option.question_id == x.question_id).all()
         random.shuffle(option)
         option_query.append(option)
     if request.method == 'POST':
         data = request.get_json()
-        score = 0
         question_id  = Question.query.filter(Question.quiz_id == quizz_id).all()
         
         for x in range(1,len(question_id) + 1):
@@ -107,10 +107,11 @@ def take_quiz(quizz_id):
         new_score = Score(quiz_id = quizz_id, user_id = current_user.id, user_score = score)
         db.session.add(new_score)
         db.session.commit()
+        return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query, user_score = score)
         
         
         
-    return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query)
+    return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query, user_score = score)
 
 
 

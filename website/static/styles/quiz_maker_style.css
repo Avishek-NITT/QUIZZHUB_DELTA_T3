@@ -30,6 +30,9 @@
 
 
 .submit_btn{
+    height: max-content;
+    width: max-content;
+    padding: 0.5%;
     cursor: pointer;
 }
 

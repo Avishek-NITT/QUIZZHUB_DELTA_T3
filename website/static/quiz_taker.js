@@ -1,10 +1,11 @@
 const form_ele = document.querySelector(".form")
+const score_displayer = document.getElementById("modal_text")
+
 
 form_ele.addEventListener('submit', event =>{
     event.preventDefault();
     const formData = new FormData(form_ele)
     const data = Object.fromEntries(formData)
-    console.log(data)
     let currentURL = window.location.href;
     fetch(currentURL, {
         method :'POST',
@@ -13,6 +14,9 @@ form_ele.addEventListener('submit', event =>{
         },
         body: JSON.stringify(data)
     })
+    score_display_modal.showModal() 
 })
+
+
 
 
