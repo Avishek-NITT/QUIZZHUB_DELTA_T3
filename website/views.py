@@ -4,6 +4,7 @@ from . import db
 from .models import User, Quiz, Question, Option, Score, User_profile
 from werkzeug.utils import secure_filename
 import random
+import base64
 
 
 views = Blueprint('views', __name__)
@@ -80,24 +81,26 @@ def show_user_profile():
     if request.method == 'POST':
         if not request.files['profile_pic']:
             return redirect(url_for('views.home'))
-        else:
-            return "Success"
+        
+        #delete user's previous image
         profile_pic = request.files['profile_pic']
+        db.session.query(User_profile).filter(User_profile.user_id == current_user.id).delete()
         img = User_profile(user_id = current_user.id, profile_img = profile_pic.read())
         db.session.add(img)
         db.session.commit()
-        return "Success"
-
-
+    profile_img_query = ""
+    query = User_profile.query.filter(User_profile.user_id == current_user.id).first()
+    if query:
+        profile_img_query = base64.b64encode(query.profile_img).decode('utf-8')
     quiz_query = Quiz.query.filter(Quiz.user_id == current_user.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == current_user.id).all()
     if quiz_taken_query1:
         quiz_taken_query2 =[]
         for x in quiz_taken_query1:
             quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
-        return render_template('user_profile.html', user = current_user, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2)
+        return render_template('user_profile.html', user = current_user, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2, prof_img = profile_img_query)
     else:
-        return render_template('user_profile.html', user = current_user, quizes = quiz_query)
+        return render_template('user_profile.html', user = current_user, quizes = quiz_query, prof_img = profile_img_query)
 
 @views.route('/quiz_taker/<quizz_id>', methods = ['GET' , 'POST'])
 @login_required
@@ -141,12 +144,11 @@ def test():
     query3 = Question.query.all()
     query4 = Option.query.all() 
     query5 = Score.query.all()
-    return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, message5 = query5 , user = current_user)
+    query6 = User_profile.query.all()
+    return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, message5 = query5 ,message6 = query6, user = current_user)
 
 @views.route('/delete')
 def delete():
-    query= User.query.delete()
-    db.session.commit()
     query= Quiz.query.delete()
     db.session.commit()
     query= Question.query.delete()
@@ -154,6 +156,8 @@ def delete():
     query= Option.query.delete()
     db.session.commit()
     query = Score.query.delete()
+    db.session.commit()
+    query = User_profile.query.delete()
     db.session.commit()
 
     return redirect(url_for('views.home'))

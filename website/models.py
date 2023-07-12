@@ -45,6 +45,6 @@ class Score(db.Model):
 
 class User_profile(db.Model):
     __tablename__ = 'user_profile'
-    User_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
-    profile_img = db.Column(db.String, default=None)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    profile_img = db.Column(db.LargeBinary, default=None)
     user = db.relationship('User', backref='profile', uselist=False)

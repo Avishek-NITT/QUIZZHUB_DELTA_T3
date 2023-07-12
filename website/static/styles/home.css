@@ -36,18 +36,3 @@
     top: 500%;
 }
 
-.bonus{
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translate(-50%);
-    margin: 2%;
-}
-
-.delta{
-    font-size: 1.2em;
-}
-
-#span2{
-    color: red;
-}

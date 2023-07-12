@@ -13,18 +13,33 @@
 
 
 {%block content%}
-
-
- <form method="post" enctype="multipart/form-data">
- <div class="upload-container">
-    <input class="uploaded_image" type="file" accept=".image/*" name="profile_pic" onclick="input_clicked()"> 
-    <span id="upload_plus_sign"> +</span>
-  </div>
-  <dialog class="upload_modal" id="upload_modal">
+{%if prof_img%}
+<form method="post" enctype="multipart/form-data">
+  <div class="upload-container">
+     <input class="uploaded_image" type="file" accept=".image/*" name="profile_pic" onclick="input_clicked()"> 
+     <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
+     
+   </div>
+   <dialog class="upload_modal" id="upload_modal">
     <button id="close_btn" onclick="close_modal()">CLOSE</button>
     <button id="submit_btn">UPLOAD PHOTO</button>
   </dialog>
 </form>
+
+{%else%}
+<form method="post" enctype="multipart/form-data">
+  <div class="upload-container">
+     <input class="uploaded_image" type="file" accept=".jpeg" name="profile_pic" onclick="input_clicked()"> 
+     <span id="upload_plus_sign"> +</span>
+   </div>
+   <dialog class="upload_modal" id="upload_modal">
+    <button id="close_btn" onclick="close_modal()">CLOSE</button>
+    <button id="submit_btn">UPLOAD PHOTO</button>
+  </dialog>
+</form>
+{%endif%}
+
+  
   {%if user.first_name%}
   <span id="user_name"> {{user.first_name}}</span>
 {%else%}
