@@ -2,7 +2,9 @@ from flask import Blueprint,render_template,request, flash, redirect,url_for
 from flask_login import login_required, current_user
 from . import db
 from .models import User, Quiz, Question, Option, Score
+from werkzeug.utils import secure_filename
 import random
+
 
 views = Blueprint('views', __name__)
 auth = Blueprint('auth', __name__)
@@ -71,8 +73,6 @@ def show_profile(profile):
 @views.route('/profile/my_profile', methods = ['GET' , 'POST'])
 @login_required
 def show_user_profile():
-    if request.method == 'POST':
-        
 
 
     quiz_query = Quiz.query.filter(Quiz.user_id == current_user.id).all()
@@ -131,12 +131,14 @@ def test():
 
 @views.route('/delete')
 def delete():
-    # query= Quiz.query.delete()
-    # db.session.commit()
-    # query= Question.query.delete()
-    # db.session.commit()
-    # query= Option.query.delete()
-    # db.session.commit()
+    query= User.query.delete()
+    db.session.commit()
+    query= Quiz.query.delete()
+    db.session.commit()
+    query= Question.query.delete()
+    db.session.commit()
+    query= Option.query.delete()
+    db.session.commit()
     query = Score.query.delete()
     db.session.commit()
 

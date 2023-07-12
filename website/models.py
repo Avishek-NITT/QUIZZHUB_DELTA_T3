@@ -41,3 +41,10 @@ class Score(db.Model):
     quiz_id = db.Column(db.Integer)
     user_id = db.Column(db.Integer)
     user_score = db.Column(db.Integer)
+
+
+class User_profile(db.Model):
+    __tablename__ = 'user_profile'
+    User_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    profile_img = db.Column(db.String, default=None)
+    user = db.relationship('User', backref='profile', uselist=False)
