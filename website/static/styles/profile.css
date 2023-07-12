@@ -85,7 +85,7 @@ ul {
     border-color: #999;
   }
 
-  
+
   .upload-container span {
     font-size: 48px;
     color: #999;
@@ -97,18 +97,56 @@ ul {
     top: 38%;
   }
 
-  #file-input{
-    height: 20vh;
-    opacity: 0;
-  }
+  /* #file-input{
+    width: 3vw;
+    height: 2vh;
+  } */
   #upload_plus_sign{
     position: absolute;
     pointer-events: none;
     font-size: 4em;
     color: rgb(0, 255, 0);
-
+    opacity: 0;
   }
 
-  #upload_btn{
-    opacity: 0;
+  #submit_btn{
+    background-color: black;
+    padding: 0.5%;
+    border: solid rgb(0, 255, 0);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    cursor: pointer;
+  }
+
+  .upload_modal{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+
+  .upload_modal::backdrop{
+    filter: blur(100px);
+  }
+
+  #close_btn{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin: 1%;
+    padding: 0.5%;
+    background-color: black;
+    border: solid rgb(0, 255, 0);
+    cursor: pointer;
+  }
+
+  .show_image{
+    height: 20vh;
+    border: solid rgb(0, 255, 0);
+    position: relative;
   }

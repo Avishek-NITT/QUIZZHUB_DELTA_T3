@@ -59,6 +59,8 @@ def quizmaker():
 @views.route('/profile/<profile>')
 @login_required
 def show_profile(profile):
+    if profile == current_user.first_name:
+        return redirect(url_for('views.show_user_profile'))
     user_query = User.query.filter(User.first_name == profile).first()
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
@@ -70,13 +72,14 @@ def show_profile(profile):
     else:
         return render_template('profile.html', user = user_query, quizes = quiz_query)
 
-@views.route('/profile/my_profile', methods = ['GET' , 'POST'])
+@views.route('/profile/my_profile', methods = ['GET', 'POST'])
 @login_required
 def show_user_profile():
     if request.method == 'POST':
-        
         if not request.files['profile_pic']:
             return redirect(url_for('views.home'))
+        else:
+            return "Success"
         profile_pic = request.files['profile_pic']
         img = User_profile(user_id = current_user.id, profile_img = profile_pic.read())
         db.session.add(img)

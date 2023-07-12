@@ -15,13 +15,15 @@
 {%block content%}
 
 
- <form method="post">
+ <form method="post" enctype="multipart/form-data">
  <div class="upload-container">
-    <button id="upload_btn">
-        <input type="file" id="file-input" name="profile_pic">
-    </button>
+    <input class="uploaded_image" type="file" accept=".image/*" name="profile_pic" onclick="input_clicked()"> 
     <span id="upload_plus_sign"> +</span>
   </div>
+  <dialog class="upload_modal" id="upload_modal">
+    <button id="close_btn" onclick="close_modal()">CLOSE</button>
+    <button id="submit_btn">UPLOAD PHOTO</button>
+  </dialog>
 </form>
   {%if user.first_name%}
   <span id="user_name"> {{user.first_name}}</span>
@@ -52,5 +54,8 @@
 </div>
 
 
+{%endblock%}
 
+{%block script%}
+<script src="{{ url_for('static',filename='user_profile.js') }}"></script>
 {%endblock%}
