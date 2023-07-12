@@ -61,9 +61,13 @@ def quizmaker():
 @login_required
 def show_profile(profile):
     user_query = User.query.filter(User.first_name == profile).first()
+    profile_img_query = ""
+    query = User_profile.query.filter(User_profile.user_id == user_query.id).first()
+    if query:
+        profile_img_query = base64.b64encode(query.profile_img).decode('utf-8')
     if not user_query:
         return render_template('home.html', user = current_user)
-    if user_query.first_name == profile:
+    if user_query.first_name == current_user.first_name:
         return redirect(url_for('views.show_user_profile'))
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
@@ -71,9 +75,9 @@ def show_profile(profile):
         quiz_taken_query2 =[]
         for x in quiz_taken_query1:
             quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
-        return render_template('profile.html', user = user_query, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2)
+        return render_template('profile.html', user = user_query, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2, prof_img = profile_img_query)
     else:
-        return render_template('profile.html', user = user_query, quizes = quiz_query)
+        return render_template('profile.html', user = user_query, quizes = quiz_query, prof_img = profile_img_query)
 
 @views.route('/profile/my_profile', methods = ['GET', 'POST'])
 @login_required

@@ -13,12 +13,12 @@
 
 
 {%block content%}
+{%if prof_img%}
+  <div class="upload-container">
+     <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
+   </div>
+{%endif%}
 
-
- <form method="post">
- <div class="upload-container">
-  </div>
-</form>
   {%if user.first_name%}
   <span id="user_name"> {{user.first_name}}</span>
 {%else%}
