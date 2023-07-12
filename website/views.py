@@ -127,16 +127,12 @@ def take_quiz(quizz_id):
             option = Option.query.filter(Option.question_id == question_id[x-1].question_id, Option.option_text == chosen_option).first()
             if(option.is_correct == True):
                 score = score + 1
-
-
         new_score = Score(quiz_id = quizz_id, user_id = current_user.id, user_score = score)
         db.session.add(new_score)
         db.session.commit()
         return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query, user_score = score)
-        
-        
-        
-    return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query, user_score = score)
+    else:
+        return render_template("quiz_taker.html",user = current_user, quiz_query= quiz_query, question_query = question_query,option_query = option_query)
 
 
 

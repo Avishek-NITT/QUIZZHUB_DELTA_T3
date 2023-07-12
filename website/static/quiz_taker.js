@@ -14,9 +14,20 @@ form_ele.addEventListener('submit', event =>{
         },
         body: JSON.stringify(data)
     })
+
     score_display_modal.showModal() 
+   
+    
 })
 
+
+function redirectTo(url) {
+    window.location.href = url;
+  }
+
+function retake_quiz(){
+    location.reload()
+}
 
 
 

@@ -39,8 +39,8 @@ Quiz
     <div class="modal_container">
         <span id="modal_text"> Your score: {{user_score}} </span>
         <div class="btn_container">
-            <button class="modal_btn" id="modal_cont_btn">CONTINUE</button>
-            <button class="modal_btn" id="modal_retake_btn"> RETAKE QUIZ</button>
+            <button class="modal_btn" id="modal_cont_btn" onclick="redirectTo('/')">CONTINUE</button>
+            <button class="modal_btn" id="modal_retake_btn" onclick="retake_quiz()"> RETAKE QUIZ</button>
         </div>
     </div>
 </dialog>
