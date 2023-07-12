@@ -6,6 +6,9 @@ HOME
 
 {%endblock%}
 
+{%block head%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/home.css') }}">
+{%endblock%}
 
 {%block content%}
 
@@ -13,16 +16,13 @@ HOME
 
 <div class="wrapper">
     <form method="POST">
-        <label for="text"> Search user</label>
         <input type="search" id="search_usr" name="search_usr"/> 
+        <button type="submit" id="submit_btn">Search user</button>
     </form>
     <br>
-    </div>
     <a class="search_results"  href="profile/{{usr_search_results}}">{{usr_search_results}}</a>
-<!-- {%if usr_search_results%}
-    {%for x in user_search_results%}
-        <h1> </h1>
-    {%endfor%}
-{%endif%} -->
+</div>
+   
+
 
 {%endblock%}

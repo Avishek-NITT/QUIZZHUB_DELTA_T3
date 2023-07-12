@@ -1,7 +1,7 @@
 from flask import Blueprint,render_template,request, flash, redirect,url_for
 from flask_login import login_required, current_user
 from . import db
-from .models import User, Quiz, Question, Option, Score
+from .models import User, Quiz, Question, Option, Score, User_profile
 from werkzeug.utils import secure_filename
 import random
 
@@ -73,6 +73,15 @@ def show_profile(profile):
 @views.route('/profile/my_profile', methods = ['GET' , 'POST'])
 @login_required
 def show_user_profile():
+    if request.method == 'POST':
+        
+        if not request.files['profile_pic']:
+            return redirect(url_for('views.home'))
+        profile_pic = request.files['profile_pic']
+        img = User_profile(user_id = current_user.id, profile_img = profile_pic.read())
+        db.session.add(img)
+        db.session.commit()
+        return "Success"
 
 
     quiz_query = Quiz.query.filter(Quiz.user_id == current_user.id).all()

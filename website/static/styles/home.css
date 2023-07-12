@@ -1,0 +1,35 @@
+.wrapper{
+    height: max-content;
+    width: max-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: absolute;
+    left: 40%;
+    top: 20%;
+}
+
+#search_usr{
+    height: 2.5vh;
+    width: 16vw;
+    background-color: black;
+    color: rgb(0, 255, 0);
+    border: 1px solid rgb(0, 255, 0);
+}
+
+
+#submit_btn{
+    height: max-content;
+    width: max-content;
+    background-color: black;
+    border: solid rgb(0, 255, 0);
+    padding: 1%;
+    position: absolute;
+    left: 72%;
+    top: 160%;
+}
+
+.search_results{
+    position: absolute;
+    top: 500%;
+}
