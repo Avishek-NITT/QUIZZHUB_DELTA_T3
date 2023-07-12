@@ -78,7 +78,7 @@ ul {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    cursor: pointer;
+
   }
 
   .upload-container:hover {
@@ -106,7 +106,6 @@ ul {
     pointer-events: none;
     font-size: 4em;
     color: rgb(0, 255, 0);
-    opacity: 0;
   }
 
   #submit_btn{
@@ -149,4 +148,12 @@ ul {
     height: 20vh;
     border: solid rgb(0, 255, 0);
     position: relative;
+  }
+
+
+  .uploaded_image{
+    cursor: pointer;
+    height: 30vh;
+    width: 20vw;
+    opacity: 0;
   }

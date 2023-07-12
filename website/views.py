@@ -15,7 +15,7 @@ def home():
     if request.method == 'POST':
         usr_search = request.form.get('search_usr')
         usr_query =  User.query.filter(User.first_name.like(usr_search)).all()
-        return render_template("home.html", user = current_user, usr_search_results = usr_search)
+        return render_template("home.html", user = current_user, usr_search_results = usr_query)
     return render_template("home.html", user = current_user)
 
 
@@ -59,9 +59,11 @@ def quizmaker():
 @views.route('/profile/<profile>')
 @login_required
 def show_profile(profile):
-    if profile == current_user.first_name:
-        return redirect(url_for('views.show_user_profile'))
     user_query = User.query.filter(User.first_name == profile).first()
+    if not user_query:
+        return render_template('home.html', user = current_user)
+    if user_query.first_name == profile:
+        return redirect(url_for('views.show_user_profile'))
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
     if quiz_taken_query1:

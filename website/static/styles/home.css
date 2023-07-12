@@ -10,8 +10,9 @@
 }
 
 #search_usr{
-    height: 2.5vh;
+    height: 4vh;
     width: 16vw;
+    padding: 10px;
     background-color: black;
     color: rgb(0, 255, 0);
     border: 1px solid rgb(0, 255, 0);
@@ -22,14 +23,31 @@
     height: max-content;
     width: max-content;
     background-color: black;
-    border: solid rgb(0, 255, 0);
-    padding: 1%;
+    border: 2px solid rgb(0, 255, 0);
+    padding: 1.5%;
     position: absolute;
     left: 72%;
     top: 160%;
+    cursor: pointer;
 }
 
 .search_results{
     position: absolute;
     top: 500%;
+}
+
+.bonus{
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+    margin: 2%;
+}
+
+.delta{
+    font-size: 1.2em;
+}
+
+#span2{
+    color: red;
 }

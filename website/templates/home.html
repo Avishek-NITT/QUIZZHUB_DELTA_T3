@@ -16,11 +16,16 @@ HOME
 
 <div class="wrapper">
     <form method="POST">
-        <input type="search" id="search_usr" name="search_usr"/> 
+        <input type="search" id="search_usr" name="search_usr" placeholder="Search user"/> 
         <button type="submit" id="submit_btn">Search user</button>
     </form>
     <br>
-    <a class="search_results"  href="profile/{{usr_search_results}}">{{usr_search_results}}</a>
+    {%if usr_search_results%}
+        {%for x in usr_search_results%}
+        <a class="search_results"  href="profile/{{x.first_name}}">{{x.first_name}}</a>
+        {%endfor%}
+    {%endif%}
+    
 </div>
    
 
