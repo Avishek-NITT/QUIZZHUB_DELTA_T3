@@ -61,9 +61,9 @@ Test
 
 <br>
 {%for x in message7%}
-{%if x%}
-<h1> Hello</h1>
-{%endif%}
+{{x.recieved_user}}
+{{x.sender_user}}
+{{x.frnd_status}}
 {%endfor%}
 
 

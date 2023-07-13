@@ -25,9 +25,24 @@ HOME
         <a class="search_results"  href="profile/{{x.first_name}}">{{x.first_name}}</a>
         {%endfor%}
     {%endif%}
-    
 </div>
-   
+
+<div class="frnd_req_container">
+    <h2 align="center"> FRIEND REQUESTS</h2>
+    {%if frnd_req_list%}
+        {%for x in frnd_req_list%}
+        <div class="frnd_req_list">
+            <span>{{x.sender_user}}</span>
+            <button class="frnd_req_btn" onclick="frnd_req(1,'{{x.sender_user}}')">ACCEPT</button>
+            <button class="frnd_req_btn" onclick="frnd_req(0,'{{x.sender_user}}')">REJECT</button>
+        </div>
+        {%endfor%}
+    {%endif%}
+</div>
+
+{%endblock%}
 
 
+{%block script%}
+<script src="{{ url_for('static',filename='home.js') }}"></script>
 {%endblock%}

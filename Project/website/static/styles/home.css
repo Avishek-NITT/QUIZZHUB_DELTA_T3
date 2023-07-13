@@ -36,3 +36,10 @@
     top: 500%;
 }
 
+.frnd_req_container{
+    height: max-content;
+    width: max-content;
+    border: solid rgb(0, 255, 0);
+    padding: 1%;
+    margin: 1%;
+}

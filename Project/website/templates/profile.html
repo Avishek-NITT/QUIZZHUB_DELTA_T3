@@ -32,13 +32,15 @@
 {%if frnd_query%}
     {%for x in frnd_query%}    
       {%if x.frnd_status == 1%}
-      <h1>Accepted</h1>
+      <h1>✔ FRIENDS</h1>
       {%else%}
-      <h1> Pending</h1>
+      <label> REQUEST SENT</label>
       {%endif%}
     {%endfor%}
 {%else%}
-{{frnd_query}}
+<form id="myForm" method="POST">
+  <input type="submit" value="Send FRND REQUEST" id="send_frnd_req_btn">
+</form>
 
 {%endif%}
 

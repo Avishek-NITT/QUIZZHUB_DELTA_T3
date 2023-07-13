@@ -29,6 +29,4 @@ uploaded_image.addEventListener("change", function(){
         imageElement.src = imageUrl;
         modal.appendChild(imageElement);
     })
-
-    
 })

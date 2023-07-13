@@ -16,8 +16,6 @@ form_ele.addEventListener('submit', event =>{
     })
 
     score_display_modal.showModal() 
-   
-    
 })
 
 

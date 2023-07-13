@@ -13,11 +13,26 @@ auth = Blueprint('auth', __name__)
 @views.route('/' , methods = ['GET' , 'POST'])
 @login_required
 def home(): 
+    user_query = User.query.filter(User.id == current_user.id).first()
     if request.method == 'POST':
         usr_search = request.form.get('search_usr')
-        usr_query =  User.query.filter(User.first_name.like(usr_search)).all()
-        return render_template("home.html", user = current_user, usr_search_results = usr_query)
-    return render_template("home.html", user = current_user)
+        frnd_req_data = request.get_json(silent=True)
+        if usr_search:
+            usr_query =  User.query.filter(User.first_name.like(usr_search)).all()
+            return render_template("home.html", user = current_user, usr_search_results = usr_query)
+        if frnd_req_data:
+            if frnd_req_data['request_status'] == 0:
+                db.session.query(User_Friends).filter(User_Friends.sender_user == frnd_req_data['sender_user']).delete()
+                db.session.commit()
+            else:
+                db.session.query(User_Friends).filter(User_Friends.sender_user == frnd_req_data['sender_user']).update(
+                    {User_Friends.frnd_status : 1}
+                )
+                db.session.commit()
+
+    frnd_req_query = User_Friends.query.filter(User_Friends.recieved_user == user_query.first_name,User_Friends.frnd_status == 0).all()
+
+    return render_template("home.html", user = current_user, frnd_req_list = frnd_req_query)
 
 
 
@@ -57,11 +72,18 @@ def quizmaker():
     return render_template("quizmaker.html", user = current_user)
 
 
-@views.route('/profile/<profile>')
+@views.route('/profile/<profile>',methods = ['GET', 'POST'])
 @login_required
 def show_profile(profile):
     current_user_query = User.query.filter(User.id == current_user.id).first()
     user_query = User.query.filter(User.first_name == profile).first()
+
+    if request.method == 'POST':
+        req_query = User_Friends(sender_user = current_user_query.first_name,
+                                recieved_user = profile, frnd_status = 0)
+        db.session.add(req_query)
+        db.session.commit()
+
     profile_img_query = ""
     query = User_profile.query.filter(User_profile.user_id == user_query.id).first()
     if query:
@@ -72,9 +94,11 @@ def show_profile(profile):
         return redirect(url_for('views.show_user_profile'))
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
-    user_frnd_query = ""
     user_frnd_query = User_Friends.query.filter(User_Friends.sender_user == current_user_query.first_name,
                                                 User_Friends.recieved_user == user_query.first_name).all()
+    if not user_frnd_query:
+        user_frnd_query = User_Friends.query.filter(User_Friends.sender_user ==user_query.first_name,
+                                                User_Friends.recieved_user == current_user_query.first_name).all()
     if quiz_taken_query1:
         quiz_taken_query2 =[]
         for x in quiz_taken_query1:
@@ -171,8 +195,7 @@ def delete():
     # db.session.commit()
     # query = User_Friends.query.delete()
     # db.session.commit()
-    query = User_Friends(sender_user = "Avishek", recieved_user = "Avyyukt", frnd_status = 0)
-    db.session.add(query)
+    query = User_Friends.query.delete()
     db.session.commit()
 
     return redirect(url_for('views.home'))
