@@ -48,3 +48,12 @@ class User_profile(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
     profile_img = db.Column(db.LargeBinary, default=None)
     user = db.relationship('User', backref='profile', uselist=False)
+
+
+# class User_Friends(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     sender_user = db.Column(db.String, default=None)
+#     reciever_user = db.Column(db.String, default=None)
+#     frnd_status = db.Column(db.Integer, default=None)
+
+

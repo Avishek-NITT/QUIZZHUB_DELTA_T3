@@ -60,6 +60,7 @@ def quizmaker():
 @views.route('/profile/<profile>')
 @login_required
 def show_profile(profile):
+    current_user_query = User.query.filter(User.id == current_user.id).first()
     user_query = User.query.filter(User.first_name == profile).first()
     profile_img_query = ""
     query = User_profile.query.filter(User_profile.user_id == user_query.id).first()
@@ -71,13 +72,18 @@ def show_profile(profile):
         return redirect(url_for('views.show_user_profile'))
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
+    user_frnd_query = ""
+
     if quiz_taken_query1:
         quiz_taken_query2 =[]
         for x in quiz_taken_query1:
             quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
-        return render_template('profile.html', user = user_query, quizes = quiz_query, quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2, prof_img = profile_img_query)
+        return render_template('profile.html', user = user_query, quizes = quiz_query, 
+                            quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2, 
+                            prof_img = profile_img_query, frnd_query = user_frnd_query)
     else:
-        return render_template('profile.html', user = user_query, quizes = quiz_query, prof_img = profile_img_query)
+        return render_template('profile.html', user = user_query, quizes = quiz_query, 
+                                                prof_img = profile_img_query,frnd_query = user_frnd_query)
 
 @views.route('/profile/my_profile', methods = ['GET', 'POST'])
 @login_required
@@ -149,6 +155,8 @@ def test():
 
 @views.route('/delete')
 def delete():
+    query = User.query.delete()
+    db.session.commit()
     query= Quiz.query.delete()
     db.session.commit()
     query= Question.query.delete()

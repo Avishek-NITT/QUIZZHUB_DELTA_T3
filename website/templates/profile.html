@@ -17,13 +17,19 @@
   <div class="upload-container">
      <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
    </div>
+  {%else%}
+  <div class="upload-container">
+    <img id="profile_pic" src="{{url_for('static', filename='/Image/default_profile.jpg')}}", alt="Profile not detected" >
+  </div>
 {%endif%}
-
   {%if user.first_name%}
   <span id="user_name"> {{user.first_name}}</span>
 {%else%}
 <span id="user_name"> {{user}}</span>
  {%endif%}
+
+
+
 
 <div class="quiz_container">
     <span class="container_title">QUIZES</span>
