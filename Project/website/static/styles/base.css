@@ -10,11 +10,9 @@ body{
     background-size: cover;
 }
 
-
-
 .navbar{
     background-color: rgb(0, 0, 0);
-    height: 7vh;
+    height: max-content;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -29,13 +27,25 @@ body{
 
 .nav-item{
     margin:3%;
-    padding: 1.2%;
-    height: ;
+    padding: 1.2%; 
+    height: 2vh;
     border: solid rgb(0, 255, 0);
+    border-radius: 45%;
+    opacity: 70%;
+    transition: all .2s ease-in-out
 }
+
+.nav-item:hover{
+    background-color: rgb(129, 192, 122);
+    color: black;
+    opacity: 100%;
+    transform: scale(4);
+}
+
 a{
     text-decoration: none;
 }
+
 
 .user_profile{
     width: 8vw;

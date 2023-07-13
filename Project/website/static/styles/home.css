@@ -1,3 +1,37 @@
+@keyframes slideInLeft {
+    0% {
+      transform: translateY(300%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+@keyframes wiggle {
+  0%, 7% {
+    transform: rotateZ(0);
+  }
+  15% {
+    transform: rotateZ(-15deg);
+  }
+  20% {
+    transform: rotateZ(10deg);
+  }
+  25% {
+    transform: rotateZ(-10deg);
+  }
+  30% {
+    transform: rotateZ(6deg);
+  }
+  35% {
+    transform: rotateZ(-4deg);
+  }
+  40%, 100% {
+    transform: rotateZ(0);
+  }
+}
+
+
 .wrapper{
     height: max-content;
     width: max-content;
@@ -34,12 +68,41 @@
 .search_results{
     position: absolute;
     top: 500%;
+    animation: 0.5s ease-out 0s 1 slideInLeft;
+    font-size: 2em;
 }
 
 .frnd_req_container{
+    position: absolute;
     height: max-content;
     width: max-content;
     border: solid rgb(0, 255, 0);
     padding: 1%;
     margin: 1%;
+    animation: wiggle 2s linear 1;
+}
+.frnd_req_container:hover{
+    animation-iteration-count: 0;
+}
+
+.frnd_req_list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.frnd_req_btn{
+    height: fit-content;
+    width: fit-content;
+    font-size: 2em;
+    background-color: transparent;
+    border: transparent;
+}
+
+.frnd_req_btn:hover{
+    background-color: rgb(48, 48, 48) ;
+}
+
+.req_sender{
+    font-size: 2em;
 }
