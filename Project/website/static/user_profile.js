@@ -2,9 +2,7 @@ const modal = document.querySelector(".upload_modal")
 const uploaded_image = document.querySelector(".uploaded_image")
 let htmlmarkup =""
 
-function input_clicked(){
-    upload_modal.showModal()
-}
+
 
 function close_modal(){
     localStorage.removeItem("my-image");
@@ -28,5 +26,6 @@ uploaded_image.addEventListener("change", function(){
         console.log(imageUrl)
         imageElement.src = imageUrl;
         modal.appendChild(imageElement);
+        upload_modal.showModal()
     })
 })

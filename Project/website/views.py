@@ -81,7 +81,8 @@ def show_profile(profile):
     user_query = User.query.filter(User.first_name == profile).first()
 
     if request.method == 'POST':
-        req_query = User_Friends.query.filter(User_Friends.recieved_user == profile).first()
+        req_query = User_Friends.query.filter(User_Friends.recieved_user == profile, 
+        User_Friends.sender_user == current_user_query.first_name).first()
         if not req_query:
             req_query = User_Friends(sender_user = current_user_query.first_name,
                                     recieved_user = profile, frnd_status = 0)
@@ -98,6 +99,8 @@ def show_profile(profile):
         return redirect(url_for('views.show_user_profile'))
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
+
+
     user_frnd_query = User_Friends.query.filter(User_Friends.sender_user == current_user_query.first_name,
                                                 User_Friends.recieved_user == user_query.first_name).all()
     if not user_frnd_query:

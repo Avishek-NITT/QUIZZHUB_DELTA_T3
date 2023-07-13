@@ -2,7 +2,7 @@
 
 {%block title%}
 
-{{user}}
+{{user.first_name}}
 
 {%endblock%}
 
@@ -16,7 +16,7 @@
 {%if prof_img%}
 <form method="post" enctype="multipart/form-data">
   <div class="upload-container">
-     <input class="uploaded_image" type="file" accept=".image/*" name="profile_pic" onclick="input_clicked()"> 
+     <input class="uploaded_image" type="file" accept=".png, .jpg, .jpeg" name="profile_pic" onclick="input_clicked()"> 
      <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
      
    </div>
@@ -29,7 +29,7 @@
 {%else%}
 <form method="post" enctype="multipart/form-data">
   <div class="upload-container">
-     <input class="uploaded_image" type="file" accept=".jpeg" name="profile_pic" onclick="input_clicked()"> 
+     <input class="uploaded_image" type="file" accept=".jpeg" name="profile_pic"> 
      <span id="upload_plus_sign"> +</span>
    </div>
    <dialog class="upload_modal" id="upload_modal">

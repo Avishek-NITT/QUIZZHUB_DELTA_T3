@@ -38,11 +38,12 @@
 #submit_btn{
     height: 4vh;
     width: 3vw;
+    padding: 1%;
     background-color: black;
     border: solid rgb(0,255,0);
     align-self: flex-end;
     margin-right: 10%;
-    font-size: 1em;
+    font-size: 0.7em;
 }
 #submit_btn:hover{
     cursor: pointer;

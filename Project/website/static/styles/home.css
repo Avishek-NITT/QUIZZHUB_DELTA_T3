@@ -97,6 +97,7 @@
     font-size: 2em;
     background-color: transparent;
     border: transparent;
+    cursor: pointer;
 }
 
 .frnd_req_btn:hover{
