@@ -22,10 +22,12 @@ def home():
             return render_template("home.html", user = current_user, usr_search_results = usr_query)
         if frnd_req_data:
             if frnd_req_data['request_status'] == 0:
-                db.session.query(User_Friends).filter(User_Friends.sender_user == frnd_req_data['sender_user']).delete()
+                db.session.query(User_Friends).filter(User_Friends.sender_user == frnd_req_data['sender_user'],
+                User_Friends.recieved_user == user_query.first_name).delete()
                 db.session.commit()
             else:
-                db.session.query(User_Friends).filter(User_Friends.sender_user == frnd_req_data['sender_user']).update(
+                db.session.query(User_Friends).filter(User_Friends.sender_user == frnd_req_data['sender_user'],
+                User_Friends.recieved_user == user_query.first_name).update(
                     {User_Friends.frnd_status : 1}
                 )
                 db.session.commit()
