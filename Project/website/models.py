@@ -50,7 +50,10 @@ class User_profile(db.Model):
 class User_Friends(db.Model):
     __tablename__ = 'user_friends'
     id = db.Column(db.Integer, primary_key=True)
-    reciever_user = db.Column(db.String, default=None)
-    frnd_status = db.Column(db.Integer, default=None)
+    sender_user = db.Column("sender_user",db.String)
+    recieved_user = db.Column("reciever_user",db.String)
+    frnd_status = db.Column(db.Integer)
+    
+
 
 

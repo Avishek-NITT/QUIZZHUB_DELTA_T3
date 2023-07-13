@@ -73,17 +73,17 @@ def show_profile(profile):
     quiz_query = Quiz.query.filter(Quiz.user_id == user_query.id).all()
     quiz_taken_query1 = Score.query.filter(Score.user_id == user_query.id).all()
     user_frnd_query = ""
-    user_frnd_query = User_Friends.__table__.columns
-
+    user_frnd_query = User_Friends.query.filter(User_Friends.sender_user == current_user_query.first_name,
+                                                User_Friends.recieved_user == user_query.first_name).all()
     if quiz_taken_query1:
         quiz_taken_query2 =[]
         for x in quiz_taken_query1:
             quiz_taken_query2.append(Quiz.query.filter(Quiz.quiz_id == x.quiz_id).all())
-        return render_template('profile.html', user = user_query, quizes = quiz_query, 
+        return render_template('profile.html', user= current_user_query,profile_user = user_query, quizes = quiz_query, 
                             quiz_taken1 = quiz_taken_query1, quiz_taken2 = quiz_taken_query2, 
                             prof_img = profile_img_query, frnd_query = user_frnd_query)
     else:
-        return render_template('profile.html', user = user_query, quizes = quiz_query, 
+        return render_template('profile.html', user= current_user_query, profile_user = user_query, quizes = quiz_query, 
                                                 prof_img = profile_img_query,frnd_query = user_frnd_query)
 
 @views.route('/profile/my_profile', methods = ['GET', 'POST'])
@@ -152,25 +152,27 @@ def test():
     query4 = Option.query.all() 
     query5 = Score.query.all()
     query6 = User_profile.query.all()
-    query7 = User_Friends(reciever_user = "Avyyukt", frnd_status = 1 )
-    db.session.add(query7)
-    db.session.commit()
-    query7 = User_Friends.query.first()
+    query7 = User_Friends.query.all()
     return render_template('test.html', message1 = query1 , message2 = query2,message3 = query3,message4 = query4, message5 = query5 ,message6 = query6,message7= query7, user = current_user)
 
 @views.route('/delete')
 def delete():
-    query = User.query.delete()
-    db.session.commit()
-    query= Quiz.query.delete()
-    db.session.commit()
-    query= Question.query.delete()
-    db.session.commit()
-    query= Option.query.delete()
-    db.session.commit()
-    query = Score.query.delete()
-    db.session.commit()
-    query = User_profile.query.delete()
+    # query = User.query.delete()
+    # db.session.commit()
+    # query= Quiz.query.delete()
+    # db.session.commit()
+    # query= Question.query.delete()
+    # db.session.commit()
+    # query= Option.query.delete()
+    # db.session.commit()
+    # query = Score.query.delete()
+    # db.session.commit()
+    # query = User_profile.query.delete()
+    # db.session.commit()
+    # query = User_Friends.query.delete()
+    # db.session.commit()
+    query = User_Friends(sender_user = "Avishek", recieved_user = "Avyyukt", frnd_status = 0)
+    db.session.add(query)
     db.session.commit()
 
     return redirect(url_for('views.home'))

@@ -2,7 +2,7 @@
 
 {%block title%}
 
-{{user}}
+{{profile_user}}
 
 {%endblock%}
 
@@ -14,8 +14,6 @@
 
 {%block content%}
 
-{{frnd_query}}
-
 {%if prof_img%}
   <div class="upload-container">
      <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
@@ -25,13 +23,24 @@
     <img id="profile_pic" src="{{url_for('static', filename='/Image/default_profile.jpg')}}", alt="Profile not detected" >
   </div>
 {%endif%}
-  {%if user.first_name%}
-  <span id="user_name"> {{user.first_name}}</span>
+  {%if profile_user.first_name%}
+  <span id="user_name"> {{profile_user.first_name}}</span>
 {%else%}
-<span id="user_name"> {{user}}</span>
+<span id="user_name"> {{profile_user}}</span>
  {%endif%}
 
+{%if frnd_query%}
+    {%for x in frnd_query%}    
+      {%if x.frnd_status == 1%}
+      <h1>Accepted</h1>
+      {%else%}
+      <h1> Pending</h1>
+      {%endif%}
+    {%endfor%}
+{%else%}
+{{frnd_query}}
 
+{%endif%}
 
 <div class="quiz_container">
     <span class="container_title">QUIZES</span>

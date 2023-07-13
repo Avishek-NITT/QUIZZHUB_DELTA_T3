@@ -60,7 +60,11 @@ Test
 {%endfor%}
 
 <br>
-{{message7}}
+{%for x in message7%}
+{%if x%}
+<h1> Hello</h1>
+{%endif%}
+{%endfor%}
 
 
 
