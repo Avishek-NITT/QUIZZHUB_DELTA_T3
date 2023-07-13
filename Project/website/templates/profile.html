@@ -1,0 +1,60 @@
+{%extends "base.html"%}
+
+{%block title%}
+
+{{user}}
+
+{%endblock%}
+
+
+{%block head%}
+<link rel="stylesheet" href= "{{ url_for('static',filename='styles/profile.css') }}">
+{%endblock%}
+
+
+{%block content%}
+
+{{frnd_query}}
+
+{%if prof_img%}
+  <div class="upload-container">
+     <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
+   </div>
+  {%else%}
+  <div class="upload-container">
+    <img id="profile_pic" src="{{url_for('static', filename='/Image/default_profile.jpg')}}", alt="Profile not detected" >
+  </div>
+{%endif%}
+  {%if user.first_name%}
+  <span id="user_name"> {{user.first_name}}</span>
+{%else%}
+<span id="user_name"> {{user}}</span>
+ {%endif%}
+
+
+
+<div class="quiz_container">
+    <span class="container_title">QUIZES</span>
+    <br>
+    <div class="profile_quizes">
+        {%for x in quizes%}
+                <a class="links" href="/quiz_taker/{{x.quiz_id}}">{{x.quiz_title}}</a>
+        {%endfor%}
+    </div>
+
+</div>
+<div class="quiz_taken">
+    <h3 align= "center"> QUIZES TAKEN</h3>
+    <span class="text1"> Quiz Name</span>
+    <span class="text2"> Score </span>   
+    <br>
+    {% for i in range(quiz_taken1|length) %}
+    <span class="text1">{{quiz_taken2[i][0].quiz_title}}</span>
+    <span class="text2"> {{quiz_taken1[i].user_score}}</span>
+    <br>
+ {% endfor %}
+</div>
+
+
+
+{%endblock%}
