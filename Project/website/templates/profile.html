@@ -13,9 +13,9 @@
 
 
 {%block content%}
-
+<div class="profile_info">
 {%if prof_img%}
-  <div class="upload-container">
+  <div class="upload-container" >
      <img id="profile_pic" src="data:image/jpeg;base64,{{ prof_img }}", alt="Profile not detected" >
    </div>
   {%else%}
@@ -28,13 +28,13 @@
 {%else%}
 <span id="user_name"> {{profile_user}}</span>
  {%endif%}
-
+</div>
 {%if frnd_query%}
     {%for x in frnd_query%}    
       {%if x.frnd_status == 1%}
-      <h1>✔ FRIENDS</h1>
+      <h1 id="frnd_status_roger">✔ FRIENDS</h1>
       {%else%}
-      <label> REQUEST SENT</label>
+      <label class="req_status" id="request_sent_label">✔ REQUEST SENT</label>
       {%endif%}
     {%endfor%}
 {%else%}

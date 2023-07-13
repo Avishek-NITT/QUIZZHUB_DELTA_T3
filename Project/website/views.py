@@ -81,10 +81,12 @@ def show_profile(profile):
     user_query = User.query.filter(User.first_name == profile).first()
 
     if request.method == 'POST':
-        req_query = User_Friends(sender_user = current_user_query.first_name,
-                                recieved_user = profile, frnd_status = 0)
-        db.session.add(req_query)
-        db.session.commit()
+        req_query = User_Friends.query.filter(User_Friends.recieved_user == profile).first()
+        if not req_query:
+            req_query = User_Friends(sender_user = current_user_query.first_name,
+                                    recieved_user = profile, frnd_status = 0)
+            db.session.add(req_query)
+            db.session.commit()
 
     profile_img_query = ""
     query = User_profile.query.filter(User_profile.user_id == user_query.id).first()

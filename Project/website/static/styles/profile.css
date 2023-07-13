@@ -1,3 +1,43 @@
+@keyframes slideInLeft {
+  0% {
+    transform: translatex(-10%);
+  }
+  100% {
+    transform: translatex(0);
+  }
+}
+
+
+@keyframes slideInRight {
+  0% {
+    transform: translateX(200%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+
+@keyframes slideInTop {
+  0% {
+    transform: translateY(-200%);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {  
+  from {  
+      opacity:0;  
+  }  
+
+  to {  
+      opacity:1;  
+  }  
+}
+
+
 a{
     border: none;
 }
@@ -46,6 +86,7 @@ ul {
   width: 20vw;
   display: flex;
   flex-direction: column;
+  animation: 0.5s ease-out 0s 1 slideInTop;
 }
 
 .quiz_taken{
@@ -55,6 +96,7 @@ ul {
   width: 20vw;
   padding: 1%;
   border: solid rgb(0, 255, 0);
+  animation: 0.5s ease-out 0s 1 slideInRight;
 }
 
 .text1{
@@ -71,11 +113,10 @@ ul {
   left: 3%;
   top: 15%;
   overflow: hidden;
-  
     width: 10vw;
     height: 20vh;
-    border: 2px dashed rgb(0, 255, 0);
-    border-radius: 4%;
+    border: transparent;
+    border-radius: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -164,3 +205,37 @@ ul {
     object-fit: cover;
     pointer-events: none;
   }
+
+
+  #send_frnd_req_btn{
+    position: absolute;
+    background-color: black;
+    border: 2px solid rgb(0, 255, 0);
+    padding: 0.2%;
+    left: 4.3%;
+    cursor: pointer;
+    transition: all .1s ease-in-out
+  }
+
+  #send_frnd_req_btn:hover{
+    transform: scale(1.2);
+  }
+
+  #request_sent_label{
+    position: absolute;
+    left: 4.1%;
+  }
+
+.profile_info{
+  animation: fadeIn 0.5s ease-in; 
+}
+
+.req_status{
+  animation: 0.5s ease-out 0s 1 slideInTop;
+}
+
+#frnd_status_roger{
+  position: absolute;
+  left: 2.1%;
+  animation: 0.5s ease-out 0s 1 slideInTop;
+}
