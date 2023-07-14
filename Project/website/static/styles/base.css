@@ -31,15 +31,14 @@ body{
     height: 2vh;
     border: solid rgb(0, 255, 0);
     border-radius: 45%;
-    opacity: 70%;
+    opacity: 50%;
     transition: all .2s ease-in-out
 }
 
 .nav-item:hover{
-    background-color: rgb(129, 192, 122);
-    color: black;
+    /* background-color: rgb(129, 192, 122);
+    color: black; */
     opacity: 100%;
-    transform: scale(4);
 }
 
 a{
@@ -54,6 +53,7 @@ a{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 1%;
 }
 
 #profile_name{
@@ -82,4 +82,9 @@ a{
 
 #span2{
     color: red;
+}
+
+#profile_btn{
+    padding: 1%;
+    border-radius: 50%;
 }

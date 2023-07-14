@@ -70,6 +70,10 @@ def quizmaker():
             db.session.add(new_option[3])
             db.session.commit()
         return redirect(url_for('views.home'))
+    
+
+
+        
 
     return render_template("quizmaker.html", user = current_user)
 

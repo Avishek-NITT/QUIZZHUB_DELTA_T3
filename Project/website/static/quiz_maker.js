@@ -52,6 +52,7 @@ function add_ques(){
     `
     ques_box.innerHTML = htmlmarkup
     ques_box.classList.add("question")
+    ques_box.classList.add("secondary_question")
     ques_box.setAttribute('id', `question${ques_count}`)
     // ques_container_query.innerHTML += htmlmarkup
     ques_container_query.appendChild(ques_box)

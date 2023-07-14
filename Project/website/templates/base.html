@@ -19,23 +19,22 @@
         <nav class="navbar" id="navbar">
             <div class="link_container">
               <p>
+                <a class="nav-item" id="test" href="/test">Show files</a>
+                <a class="nav-item" id="delete" href="/delete">Delete</a>
               {% if user.is_authenticated %}
               <a class="nav-item" id="home" href="/">HOME</a>
               <a class="nav-item" id="logout" href="/logout">LOGOUT</a>
               <a class="nav-item" id="quizmaker" href="/quizmaker">MAKE QUIZ</a>
               <a class="nav-item " id="profile" href="/profile/my_profile">My profile</a>
+            </div>
+              <div class="user_profile">
+                <span id="profile_name">{{user.first_name}}</span>
+              </div>
                 {%else%}
                 <a class="nav-item" id="login" href="/login">LOGIN</a>
                 <a class="nav-item" id="signUp" href="/sign-up">Sign Up</a>
                 {%endif%}
-                <a class="nav-item" id="test" href="/test">Show files</a>
-                <a class="nav-item" id="delete" href="/delete">Delete</a>
-              </p>
-            </div>
-            <div class="user_profile">
-              <span id="profile_name">{{user.first_name}}</span>
-              <button id="profile_btn" onclick="/profile/my_profile"></button>
-            </div>
+            </p> 
         </nav>
         <hr style="margin-bottom: 2vh;"/>
       
@@ -46,10 +45,10 @@
           {% endfor %}
       {% endif %}    
     {%endwith%}
-    <div class="container">
+
     {% block content%}
     {%endblock%}
-    </div>
+
     <div class="bonus">
       <span class="delta" id="span1">Made with</span>
       <span class="delta" id="span2"> ♥</span>
